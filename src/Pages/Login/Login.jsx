@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { FaUserGroup, FaLock } from "react-icons/fa6";
 import login from "../../assets/login.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -17,19 +19,22 @@ const Login = () => {
         <div className="hero-content">
           <div className="card flex-shrink-0 rounded-md w-full max-w-sm shadow-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             <div className="card-body">
-              <img src={login} alt="" className="w-10 ml-20" />
+              <img src={login} alt="" className="w-10 ml-28" />
               <h1 className="text-2xl text-center font-bold">Login now</h1>
-              <div className="form-control">
+               <form onSubmit={handleSubmit(onSubmit)}>
+               <div className="form-control">
                 <input
-                  type="text"
+                  type="email"
+                  {...register("email")}
                   placeholder="Email"
                   className="outline-none border-b bg-transparent robo mt-5 pl-6"
                 />
                 <FaUserGroup className="-mt-5" />
               </div>
-              <div className="form-control ">
+              <div className="form-control mt-3">
                 <input
-                  type="text"
+                  type="password"
+                  {...register("password")}
                   placeholder="Password"
                   className="outline-none border-b bg-transparent text-white robo  pl-6 mt-4"
                 />
@@ -47,9 +52,11 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="bg-white rounded-full text-black p-2"
+                  className="bg-white rounded-full text-black p-2 cursor-pointer"
                 />
               </div>
+              <p className="robo mt-5">Don't have an account? Please <Link to='/signup' className="text-green-500">Sign Up</Link></p>
+               </form>
             </div>
           </div>
         </div>
